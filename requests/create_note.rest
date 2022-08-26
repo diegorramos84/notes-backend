@@ -2,6 +2,6 @@ POST http://localhost:3001/api/notes
 Content-Type: application/json
 
   {
-    "content": "VS Code REST client is pretty good",
+    "content": "Browser can execute only Javascript",
     "important": false
   }

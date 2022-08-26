@@ -72,12 +72,12 @@ app.delete('/api/notes/:id' , (request, response) => {
   response.status(204).end()
 })
 
-const generateId = () => {
-  const maxId = notes.length > 0 // if exists any notes
-    ? Math.max(...notes.map(n => n.id)) // check the max id number mapping t/ all the notes
-    : 0 //otherwise set id to 0 (no notes in the notes array)
-  return maxId + 1
-}
+// const generateId = () => {
+//   const maxId = notes.length > 0 // if exists any notes
+//     ? Math.max(...notes.map(n => n.id)) // check the max id number mapping t/ all the notes
+//     : 0 //otherwise set id to 0 (no notes in the notes array)
+//   return maxId + 1
+// }
 
 app.post('/api/notes' , (request, response) => {
   const body = request.body
