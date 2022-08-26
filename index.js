@@ -7,28 +7,6 @@ const Note = require('./models/note')
 app.use(cors())
 app.use(express.static('build'))
 
-
-// let notes = [
-//   {
-//     id: 1,
-//     content: "HTML is easy",
-//     date: "2022-05-30T17:30:31.098Z",
-//     important: true
-//   },
-//   {
-//     id: 2,
-//     content: "Browser can execute only Javascript",
-//     date: "2022-05-30T18:39:34.091Z",
-//     important: false
-//   },
-//   {
-//     id: 3,
-//     content: "GET and POST are the most important methods of HTTP protocol",
-//     date: "2022-05-30T19:20:14.298Z",
-//     important: true
-//   }
-// ]
-
 const requestLogger = (request, response, next) => {
   console.log('Method:', request.method)
   console.log('Path: ', request.path)
@@ -55,13 +33,6 @@ app.get('/api/notes/:id', (request, response) => {
   Note.findById(request.params.id).then(note => {
     response.json(note)
   })
-
-  // if (note) {
-  //   response.json(note)
-  // } else {
-  //   response.statusMessage = "This note does not exist"
-  //   response.status(404).end()
-  // }
 })
 
 
@@ -72,12 +43,6 @@ app.delete('/api/notes/:id' , (request, response) => {
   response.status(204).end()
 })
 
-// const generateId = () => {
-//   const maxId = notes.length > 0 // if exists any notes
-//     ? Math.max(...notes.map(n => n.id)) // check the max id number mapping t/ all the notes
-//     : 0 //otherwise set id to 0 (no notes in the notes array)
-//   return maxId + 1
-// }
 
 app.post('/api/notes' , (request, response) => {
   const body = request.body
