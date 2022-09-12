@@ -21,5 +21,5 @@ test('reverse of releveler', () => {
 test('palindrome of react', () => {
   const result = reverse('react')
 
-  expect(result).toBe('tkaer')
+  expect(result).toBe('tcaer')
 })
