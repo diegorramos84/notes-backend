@@ -39,6 +39,27 @@ describe('when there is initial one user in db', () => {
     const usernames = usersAtEnd.map(u => u.username)
     expect(usernames).toContain(newUser.username)
   })
+
+  test('creation fails with proper statuscode and message if username is alread taken', async () => {
+    const usersAtStart = await helper.usersInDb()
+
+    const newuser = {
+      username: 'root',
+      name: 'Superuser',
+      passowrd: 'salainen',
+    }
+
+    const result = await api
+      .post('/api/users')
+      .send(newuser)
+      .expect(400)
+      .expect('Content-Type', /application\/json/)
+
+    expect(result.body.error).toContain('username must be unique')
+
+    const usersAtEnd = await helper.usersInDb()
+    expect(usersAtEnd).toEqual(usersAtStart)
+  })
 })
 
 afterAll(() => {
