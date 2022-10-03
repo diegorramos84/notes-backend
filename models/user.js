@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Note'
     }
-  ]
+  ],
 })
 
 userSchema.set('toJSON', {
@@ -24,4 +24,4 @@ userSchema.set('toJSON', {
 
 const User = mongoose.model('User', userSchema)
 
-module.exporst = User
+module.exports = User
