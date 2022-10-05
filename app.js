@@ -8,6 +8,7 @@ const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 const mongoose = require('mongoose')
 const usersRouter = require('./controllers/users')
+const loginRouter = require('./controllers/login')
 
 logger.info('connecting to', config.MONGODB_URI)
 
@@ -24,6 +25,7 @@ app.use(express.static('build'))
 app.use(express.json())
 app.use(middleware.requestLogger)
 
+app.use('/api/login', loginRouter)
 app.use('/api/notes', notesRouter)
 app.use('/api/users', usersRouter)
 
