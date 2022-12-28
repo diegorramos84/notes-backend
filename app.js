@@ -3,12 +3,19 @@ const express = require('express')
 require('express-async-errors')
 const app = express()
 const cors = require('cors')
-const notesRouter = require('./controllers/notes')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
+
 const mongoose = require('mongoose')
+
+const notesRouter = require('./controllers/notes')
 const usersRouter = require('./controllers/users')
 const loginRouter = require('./controllers/login')
+
+if (process.env.NODE_ENV === 'test') {
+  const testingRouter = require('./controllers/testing')
+  app.use('/api/testing', testingRouter)
+}
 
 logger.info('connecting to', config.MONGODB_URI)
 
